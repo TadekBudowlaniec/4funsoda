@@ -494,7 +494,7 @@ function useCountUp(target, duration = 1300) {
 }
 
 function Hero() {
-  const points = useCountUp(95);
+  const points = useCountUp(200);
   const cities = useCountUp(40);
   const clients = useCountUp(10000, 1700);
 
