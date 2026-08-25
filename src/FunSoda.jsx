@@ -9,7 +9,7 @@ export { funSodaLocations };
 import {
   MapPin, Phone, Mail, Menu, X, Droplets, Leaf, Award, ChevronDown,
   ChevronLeft, Building2, ArrowRight, Star, Zap, Sparkles, Recycle,
-  Instagram, Facebook,
+  Facebook,
 } from "lucide-react";
 
 // ─── BRAND ──────────────────────────────────────────────────────────────────
@@ -24,7 +24,6 @@ const BRAND = {
   street: "ul. Słoneczna 2 lok. 2",
   city: "88-192 Piechcin",
   domain: "4funsoda.pl",
-  instagram: "https://www.instagram.com/",
   facebook: "https://www.facebook.com/",
 };
 
@@ -1127,7 +1126,7 @@ function Footer() {
               Nowoczesna i ekologiczna usługa wymiany cylindrów CO₂ do saturatorów. Dostępna w wielu miastach w Polsce – szybko, wygodnie i bez plastiku.
             </p>
             <div style={{ display: "flex", gap: 12, marginTop: 18 }}>
-              {[{ icon: <Instagram size={18} />, href: BRAND.instagram }, { icon: <Facebook size={18} />, href: BRAND.facebook }].map((s, i) => (
+              {[{ icon: <Facebook size={18} />, href: BRAND.facebook }].map((s, i) => (
                 <a key={i} href={s.href} target="_blank" rel="noreferrer"
                   style={{ width: 36, height: 36, borderRadius: 999, background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", transition: "background 0.2s" }}
                   onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.22)")}
