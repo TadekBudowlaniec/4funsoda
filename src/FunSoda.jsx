@@ -24,7 +24,7 @@ const BRAND = {
   street: "ul. Słoneczna 2 lok. 2",
   city: "88-192 Piechcin",
   domain: "4funsoda.pl",
-  facebook: "https://www.facebook.com/",
+  facebook: "https://www.facebook.com/profile.php?id=100069558743389&locale=pl_PL",
 };
 
 // ─── AURORA PALETTE ─────────────────────────────────────────────────────────
