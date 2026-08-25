@@ -80,4 +80,5 @@ na który mają przychodzić zgłoszenia z formularzy `kontakt` i `b2b`.
    ├─ FunSoda.jsx                 # cała strona (sekcje + grafiki SVG)
    ├─ data/locations.js           # 95 punktów (lat/lng/adres/godziny)
    └─ lib/cities.js               # slug, region, odmiana miejscownika
+
 ```
