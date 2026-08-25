@@ -109,10 +109,10 @@ img, svg { display: block; max-width: 100%; }
 .aurora-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.55;
+  filter: blur(90px);
+  opacity: 0.32;
   pointer-events: none;
-  animation: aurora-drift 18s ease-in-out infinite;
+  animation: aurora-drift 22s ease-in-out infinite;
   will-change: transform;
 }
 
@@ -235,7 +235,7 @@ input::placeholder, textarea::placeholder { color: #9aa0b8; }
   .b2b-benefits { order: 1; }
   .b2b-form { order: 2; }
   .contact-layout { grid-template-columns: 1fr; }
-  section { padding: 64px 0 !important; }
+  section { padding: 48px 0 !important; }
 }
 @media (max-width: 991px) {
   .contact-layout { grid-template-columns: 1fr; }

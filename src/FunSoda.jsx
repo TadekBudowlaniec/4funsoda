@@ -261,7 +261,7 @@ function HeroArt() {
     [80, 110, 8], [64, 235, 4], [96, 118, 5], [50, 165, 5],
   ];
   return (
-    <svg viewBox="0 0 340 380" width="100%" style={{ maxWidth: 460, filter: "drop-shadow(0 30px 50px rgba(124,92,255,0.28))" }} aria-hidden="true">
+    <svg viewBox="0 0 340 380" width="100%" style={{ maxWidth: 400, filter: "drop-shadow(0 24px 44px rgba(124,92,255,0.24))" }} aria-hidden="true">
       <defs>
         <linearGradient id="soda-liquid" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#A78BFA" />
@@ -406,7 +406,7 @@ function Navbar() {
   const go = (e, href) => { e.preventDefault(); setOpen(false); scroll(href); };
 
   return (
-    <header className="fixed top-0 left-0 right-0" style={{ zIndex: 1000, padding: scrolled ? "10px 0" : "18px 0", transition: "padding 0.3s ease" }}>
+    <header className="fixed top-0 left-0 right-0" style={{ zIndex: 1000, padding: scrolled ? "8px 0" : "14px 0", transition: "padding 0.3s ease" }}>
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div
           className="glass flex items-center justify-between"
@@ -505,41 +505,41 @@ function Hero() {
   ];
 
   return (
-    <section id="hero" style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: 110, paddingBottom: 40 }}>
-      <div className="max-w-7xl mx-auto px-6 w-full hero-grid" style={{ display: "grid", gap: "2.5rem", alignItems: "center", position: "relative", zIndex: 1 }}>
+    <section id="hero" style={{ position: "relative", minHeight: "92vh", display: "flex", alignItems: "center", paddingTop: 100, paddingBottom: 48 }}>
+      <div className="max-w-7xl mx-auto px-6 w-full hero-grid" style={{ display: "grid", gap: "2rem", alignItems: "center", position: "relative", zIndex: 1 }}>
         {/* LEFT */}
         <div className="flex flex-col items-start animate-slide-up">
-          <span className="glass" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 12, fontWeight: 700, padding: "8px 16px", borderRadius: 999, marginBottom: 24, color: C.violet }}>
+          <span className="glass" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11.5, fontWeight: 700, padding: "7px 15px", borderRadius: 999, marginBottom: 20, color: C.violet }}>
             <Sparkles size={14} /> Błyskawiczna wymiana cylindrów CO₂
           </span>
 
-          <h1 className="font-display" style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.2rem)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.03em", marginBottom: 20, color: C.ink }}>
+          <h1 className="font-display" style={{ fontSize: "clamp(2.2rem, 4.4vw, 3.3rem)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.03em", marginBottom: 16, color: C.ink }}>
             Bąbelki pełne <br />
             <span className="aurora-text">frajdy i orzeźwienia</span>
           </h1>
 
-          <p style={{ color: C.muted, lineHeight: 1.75, maxWidth: 480, marginBottom: 30, fontSize: 16 }}>
+          <p style={{ color: C.muted, lineHeight: 1.7, maxWidth: 460, marginBottom: 26, fontSize: 15 }}>
             {BRAND.name} to nowoczesna i ekologiczna usługa wymiany cylindrów CO₂ do saturatorów. Nasze autoryzowane punkty zapewniają szybki, wygodny i bezpieczny dostęp do wszystkiego, czego potrzebujesz do przygotowania wody gazowanej w domu – w oparciu o certyfikowany gaz spożywczy CO₂.
           </p>
 
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 14 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
             <a href="#map" onClick={(e) => { e.preventDefault(); scroll("#map"); }}
               className="text-white font-bold flex items-center gap-2"
-              style={{ background: C.aurora, padding: "14px 28px", borderRadius: 999, boxShadow: "0 14px 30px rgba(124,92,255,0.4)" }}>
-              <MapPin size={18} /> Znajdź punkt
+              style={{ background: C.aurora, padding: "12px 24px", borderRadius: 999, fontSize: 14.5, boxShadow: "0 12px 26px rgba(124,92,255,0.35)" }}>
+              <MapPin size={17} /> Znajdź punkt
             </a>
             <a href="#offer" onClick={(e) => { e.preventDefault(); scroll("#offer"); }}
               className="glass font-bold flex items-center gap-2"
-              style={{ padding: "14px 28px", borderRadius: 999, color: C.violet }}>
-              Nasza oferta <ArrowRight size={18} />
+              style={{ padding: "12px 24px", borderRadius: 999, fontSize: 14.5, color: C.violet }}>
+              Nasza oferta <ArrowRight size={17} />
             </a>
           </div>
 
-          <div style={{ display: "flex", gap: 32, marginTop: 44, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 28, marginTop: 34, flexWrap: "wrap" }}>
             {stats.map((s) => (
               <div key={s.l}>
-                <div className="font-display aurora-text" style={{ fontSize: "1.9rem", fontWeight: 800, lineHeight: 1 }}>{s.v}</div>
-                <div style={{ fontSize: 12, color: C.muted, marginTop: 6 }}>{s.l}</div>
+                <div className="font-display aurora-text" style={{ fontSize: "1.65rem", fontWeight: 800, lineHeight: 1 }}>{s.v}</div>
+                <div style={{ fontSize: 11.5, color: C.muted, marginTop: 5 }}>{s.l}</div>
               </div>
             ))}
           </div>
@@ -563,21 +563,21 @@ function Hero() {
 // ─── SECTION WRAPPER ─────────────────────────────────────────────────────────
 function Section({ id, title, subtitle, children, style }) {
   return (
-    <section id={id} style={{ padding: "88px 0", position: "relative", zIndex: 1, ...style }}>
+    <section id={id} style={{ padding: "64px 0", position: "relative", zIndex: 1, ...style }}>
       <div className="max-w-7xl mx-auto px-6">
         {(title || subtitle) && (
-          <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
             {subtitle && (
-              <span className="glass" style={{ display: "inline-block", fontSize: 11, fontWeight: 700, padding: "6px 16px", borderRadius: 999, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.12em", color: C.violet }}>
+              <span className="glass" style={{ display: "inline-block", fontSize: 10.5, fontWeight: 700, padding: "5px 14px", borderRadius: 999, marginBottom: 14, textTransform: "uppercase", letterSpacing: "0.12em", color: C.violet }}>
                 {subtitle}
               </span>
             )}
             {title && (
-              <h2 className="font-display" style={{ fontSize: "clamp(1.9rem, 3.6vw, 2.6rem)", fontWeight: 800, letterSpacing: "-0.02em", color: C.ink }}>
+              <h2 className="font-display" style={{ fontSize: "clamp(1.7rem, 3vw, 2.2rem)", fontWeight: 800, letterSpacing: "-0.02em", color: C.ink }}>
                 {title}
               </h2>
             )}
-            <div style={{ width: 64, height: 5, background: C.aurora, borderRadius: 999, margin: "18px auto 0" }} />
+            <div style={{ width: 56, height: 4, background: C.aurora, borderRadius: 999, margin: "14px auto 0" }} />
           </div>
         )}
         {children}
@@ -747,21 +747,23 @@ function AboutSection() {
 function OfferSection() {
   const [openFaq, setOpenFaq] = useState(0);
 
-  const OfferCard = ({ tint, accent, title, desc, tags, art, textColor }) => (
-    <div className="offer-card glass" style={{ borderRadius: 24, position: "relative", overflow: "hidden", minHeight: 380, display: "flex", flexDirection: "column", boxShadow: "0 14px 40px rgba(124,92,255,0.12)" }}>
-      <div style={{ padding: "26px 22px 0", position: "relative", zIndex: 2 }}>
-        <div style={{ width: 54, height: 54, borderRadius: 16, background: accent, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", marginBottom: 14 }}>
-          <Droplets size={24} />
+  const OfferCard = ({ accent, title, desc, tags, art, textColor, panelBg }) => (
+    <div className="offer-card glass" style={{ borderRadius: 20, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 10px 30px rgba(124,92,255,0.1)" }}>
+      <div style={{ padding: "22px 20px 18px", flex: 1, display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+          <div style={{ width: 42, height: 42, borderRadius: 12, background: accent, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", flexShrink: 0 }}>
+            <Droplets size={20} />
+          </div>
+          <h3 className="font-display" style={{ fontSize: "1.02rem", fontWeight: 700, color: textColor, lineHeight: 1.2 }}>{title}</h3>
         </div>
-        <h3 className="font-display" style={{ fontSize: "1.15rem", fontWeight: 700, color: textColor, marginBottom: 6 }}>{title}</h3>
-        <p style={{ fontSize: 13.5, color: C.muted, lineHeight: 1.65 }}>{desc}</p>
-        <div style={{ marginTop: 10, display: "flex", flexWrap: "wrap", gap: 7, fontSize: 11 }}>
+        <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.6 }}>{desc}</p>
+        <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 6, fontSize: 10.5 }}>
           {tags.map((t) => (
-            <span key={t} style={{ padding: "4px 10px", borderRadius: 999, background: "rgba(124,92,255,0.1)", color: C.violet, fontWeight: 700 }}>{t}</span>
+            <span key={t} style={{ padding: "4px 9px", borderRadius: 999, background: "rgba(124,92,255,0.09)", color: C.violet, fontWeight: 700 }}>{t}</span>
           ))}
         </div>
       </div>
-      <div style={{ marginTop: "auto", height: 190, display: "flex", justifyContent: "center", alignItems: "flex-end", padding: "0 16px" }}>
+      <div style={{ height: 148, background: panelBg, borderTop: "1px solid rgba(124,92,255,0.1)", display: "flex", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
         {art}
       </div>
     </div>
@@ -771,22 +773,22 @@ function OfferSection() {
     <Section id="offer" title="Nasza oferta" subtitle="Produkty">
       <div className="offer-grid">
         <OfferCard
-          tint="pink" accent="#EC4899" textColor="#BE185D"
+          accent="#EC4899" textColor="#BE185D" panelBg="linear-gradient(160deg, #FDF2F8, #FCE7F3)"
           title="Cylinder Quick Connect"
           desc="Szybki montaż, pasuje do saturatorów z systemem Quick Connect (różowa plomba)."
           tags={["60 L napoju", "Ekologia", "Quick Connect"]}
-          art={<CylinderSVG tint="pink" style={{ height: 210 }} />}
+          art={<CylinderSVG tint="pink" style={{ height: 122 }} />}
         />
         <OfferCard
-          tint="blue" accent="#3B82F6" textColor="#1D4ED8"
+          accent="#3B82F6" textColor="#1D4ED8" panelBg="linear-gradient(160deg, #EFF6FF, #DBEAFE)"
           title="Cylinder Wkręcany"
           desc="Klasyczny system wkręcany, pasuje do większości saturatorów (niebieska plomba)."
           tags={["60 L napoju", "Oszczędność", "Wkręcany"]}
-          art={<CylinderSVG tint="blue" style={{ height: 210 }} />}
+          art={<CylinderSVG tint="blue" style={{ height: 122 }} />}
         />
 
         {/* Eco box */}
-        <div style={{ background: C.aurora, borderRadius: 24, padding: "30px 24px", color: "#fff", boxShadow: "0 22px 50px rgba(124,92,255,0.4)", display: "flex", flexDirection: "column" }}>
+        <div style={{ background: C.aurora, borderRadius: 20, padding: "26px 22px", color: "#fff", boxShadow: "0 14px 36px rgba(124,92,255,0.3)", display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <Leaf size={24} />
             <h3 className="font-display" style={{ fontSize: "1.2rem", fontWeight: 700 }}>Ekologicznie i oszczędnie</h3>
