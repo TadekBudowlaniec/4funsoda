@@ -146,17 +146,33 @@ const MARKER_ICON = L.icon({
   className: "fs-marker-icon",
 });
 
-// ─── FORM HELPER (endpointy PHP mail() – jak na sodawave) ─────────────────────
-async function submitForm(endpoint, data) {
-  const res = await fetch(`/api/${endpoint}.php`, {
+// ─── FORM HELPER (FormSubmit – działa na Netlify, bez backendu i bez planu Pro) ─
+// Zgłoszenia trafiają mailem na poniższy adres. Po PIERWSZEJ wysyłce FormSubmit
+// przyśle na tę skrzynkę jednorazowy link aktywacyjny – trzeba w niego kliknąć,
+// żeby kolejne wiadomości dochodziły. Aby nie trzymać adresu jawnie w kodzie,
+// po aktywacji można podmienić go na losowy alias z panelu FormSubmit.
+const FORMSUBMIT_TARGET = "4funsoda@4funsoda.pl";
+const FORM_SUBJECTS = {
+  contact: "4FUNSODA — Wiadomość z formularza kontaktowego",
+  b2b: "4FUNSODA — Zgłoszenie B2B (współpraca)",
+};
+
+async function submitForm(kind, data) {
+  const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(FORMSUBMIT_TARGET)}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      ...data,
+      _subject: FORM_SUBJECTS[kind] || "4FUNSODA — Formularz",
+      _template: "table",
+      _captcha: "false",
+    }),
   });
   let json = {};
   try { json = await res.json(); } catch { /* brak treści JSON */ }
-  if (!res.ok || !json.ok) {
-    throw new Error(json.error || "Nie udało się wysłać. Spróbuj ponownie.");
+  const ok = res.ok && (json.success === true || json.success === "true");
+  if (!ok) {
+    throw new Error(json.message || "Nie udało się wysłać. Spróbuj ponownie.");
   }
 }
 

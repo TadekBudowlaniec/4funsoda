@@ -4,7 +4,7 @@ Strona wizytówka marki **4FUNSODA** – wymiana cylindrów CO₂ do saturatoró
 Operator: **Druk-Styl** (NIP 5621805300, ul. Słoneczna 2 lok. 2, 88-192 Piechcin, tel. +48 578 424 517).
 
 Stack: **Vite + React + Tailwind CSS + Leaflet**. Motyw graficzny: *Aurora Glass* (jasny, premium, glassmorphism) – wariant niebieski.
-Formularze: **PHP `mail()`** – endpointy `public/api/contact.php` i `public/api/b2b.php` (identycznie jak na sodawave). Strony miast (SEO): generowane automatycznie.
+Formularze: **FormSubmit** (Kontakt + B2B) – zgłoszenia idą mailem na `4funsoda@4funsoda.pl`, bez backendu i bez planu Netlify Pro. Strony miast (SEO): generowane automatycznie.
 
 ---
 
@@ -33,24 +33,26 @@ Te pliki są generowane, dlatego są w `.gitignore` (odtwarzają się przy każd
 
 ---
 
-## Wdrożenie na hostingu z PHP (seohost / LiteSpeed – jak sodawave)
+## Wdrożenie na Netlify (GitHub)
 
-1. Zbuduj projekt lokalnie: `npm run build`.
-2. Wgraj **całą zawartość katalogu `dist/`** na serwer (do katalogu domeny), łącznie z:
-   - `dist/api/contact.php` i `dist/api/b2b.php` – wysyłka maili,
-   - `dist/.htaccess` – HTTPS, przekierowania, fallback SPA, ochrona `/api/`.
-   > Uwaga: `.htaccess` to plik ukryty – upewnij się, że menedżer plików / FTP go pokazuje i przesyła.
-3. Formularze **Kontakt** i **Współpraca B2B** wysyłają zgłoszenia mailem na adres
-   ustawiony w plikach PHP (`$mailTo = '4funsoda@4funsoda.pl'`).
+1. Repo połączone z Netlify – push na `main` uruchamia build.
+2. Ustawienia buildu wykrywają się z `netlify.toml`:
+   - **Build command:** `npm run build`
+   - **Publish directory:** `dist`
 
-### E-mail z formularzy
-Adres docelowy zmienisz w `public/api/contact.php` i `public/api/b2b.php` (stała `$mailTo`).
-Jeśli hosting wymaga, aby nadawca (`From`) był kontem istniejącym na serwerze,
-zmień nagłówek `From:` w obu plikach na taki adres (np. konto serwerowe).
+### E-mail z formularzy (FormSubmit – bez planu Pro)
+Formularze **Kontakt** i **Współpraca B2B** wysyłają zgłoszenia przez
+[FormSubmit](https://formsubmit.co) na adres z `FORMSUBMIT_TARGET` w `src/FunSoda.jsx`
+(`4funsoda@4funsoda.pl`).
+
+> **Jednorazowa aktywacja:** po pierwszej wysłanej wiadomości FormSubmit przyśle na tę
+> skrzynkę e-mail z linkiem aktywacyjnym – trzeba w niego kliknąć, żeby kolejne
+> zgłoszenia dochodziły. Po aktywacji, aby nie trzymać adresu jawnie w kodzie, można
+> podmienić `FORMSUBMIT_TARGET` na losowy **alias** z panelu FormSubmit.
 
 ### Domena i dane do podmiany
-- Domena `4funsoda.pl` – w `index.html`, `robots.txt`, generatorze stron miast
-  (`scripts/generate-city-pages.mjs`, stała `SITE`) oraz w `$allowed` (CORS) w plikach PHP.
+- Domena `4funsoda.pl` – w `index.html`, `robots.txt` i generatorze stron miast
+  (`scripts/generate-city-pages.mjs`, stała `SITE`).
 - E-mail i linki społecznościowe: `src/FunSoda.jsx`, obiekt `BRAND`.
 - Logo/grafiki: `public/logo-4funsoda*.png`, `public/zespol.png`, `public/cylinder-*.png`,
   `public/og-image.png`, `public/favicon.svg`.
@@ -62,9 +64,8 @@ zmień nagłówek `From:` w obu plikach na taki adres (np. konto serwerowe).
 ```
 4funsoda/
 ├─ index.html                     # HTML + meta SEO (+ structured data)
+├─ netlify.toml                   # build / redirects / nagłówki
 ├─ public/
-│  ├─ .htaccess                   # HTTPS, przekierowania, fallback SPA, ochrona /api
-│  ├─ api/                        # endpointy PHP: contact.php, b2b.php (mail())
 │  ├─ logo-4funsoda*.png          # logo (kolor + biały wariant na ciemne tło)
 │  ├─ zespol.png, cylinder-*.png  # zdjęcia: zespół + butelki
 │  ├─ og-image.png                # obraz Open Graph 1200×630
