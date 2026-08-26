@@ -3,8 +3,8 @@
 Strona wizytówka marki **4FUNSODA** – wymiana cylindrów CO₂ do saturatorów.
 Operator: **Druk-Styl** (NIP 5621805300, ul. Słoneczna 2 lok. 2, 88-192 Piechcin, tel. +48 578 424 517).
 
-Stack: **Vite + React + Tailwind CSS + Leaflet**. Motyw graficzny: *Aurora Glass* (jasny, premium, glassmorphism).
-Formularze: **Netlify Forms** (kontakt + B2B). Strony miast (SEO): generowane automatycznie.
+Stack: **Vite + React + Tailwind CSS + Leaflet**. Motyw graficzny: *Aurora Glass* (jasny, premium, glassmorphism) – wariant niebieski.
+Formularze: **PHP `mail()`** – endpointy `public/api/contact.php` i `public/api/b2b.php` (identycznie jak na sodawave). Strony miast (SEO): generowane automatycznie.
 
 ---
 
@@ -33,32 +33,27 @@ Te pliki są generowane, dlatego są w `.gitignore` (odtwarzają się przy każd
 
 ---
 
-## Wdrożenie na Netlify (GitHub)
+## Wdrożenie na hostingu z PHP (seohost / LiteSpeed – jak sodawave)
 
-1. Utwórz repozytorium na GitHubie i wypchnij zawartość tego folderu:
-   ```bash
-   git init
-   git add .
-   git commit -m "4FUNSODA – pierwsza wersja"
-   git branch -M main
-   git remote add origin https://github.com/<uzytkownik>/<repo>.git
-   git push -u origin main
-   ```
-2. W Netlify: **Add new site → Import an existing project → GitHub** i wybierz repo.
-3. Ustawienia buildu wykryją się z `netlify.toml`:
-   - **Build command:** `npm run build`
-   - **Publish directory:** `dist`
-4. Deploy. Formularze (kontakt, B2B) pojawią się w panelu **Netlify → Forms**.
+1. Zbuduj projekt lokalnie: `npm run build`.
+2. Wgraj **całą zawartość katalogu `dist/`** na serwer (do katalogu domeny), łącznie z:
+   - `dist/api/contact.php` i `dist/api/b2b.php` – wysyłka maili,
+   - `dist/.htaccess` – HTTPS, przekierowania, fallback SPA, ochrona `/api/`.
+   > Uwaga: `.htaccess` to plik ukryty – upewnij się, że menedżer plików / FTP go pokazuje i przesyła.
+3. Formularze **Kontakt** i **Współpraca B2B** wysyłają zgłoszenia mailem na adres
+   ustawiony w plikach PHP (`$mailTo = '4funsoda@4funsoda.pl'`).
 
-### Domena i dane do podmiany przed publikacją
-- Domena `4funsoda.pl` jest użyta jako placeholder w `index.html`, `robots.txt`,
-  `public/... sitemap` i w `scripts/generate-city-pages.mjs` (stała `SITE`). Podmień na docelową.
-- E-mail `kontakt@4funsoda.pl` oraz linki do Instagrama/Facebooka (`src/FunSoda.jsx`, obiekt `BRAND`) – uzupełnij.
-- Grafiki są w 100% wektorowe (SVG) – brak zależności od zdjęć. Logo można podmienić w `LogoMark` / `public/favicon.svg`.
+### E-mail z formularzy
+Adres docelowy zmienisz w `public/api/contact.php` i `public/api/b2b.php` (stała `$mailTo`).
+Jeśli hosting wymaga, aby nadawca (`From`) był kontem istniejącym na serwerze,
+zmień nagłówek `From:` w obu plikach na taki adres (np. konto serwerowe).
 
-### Powiadomienia e-mail o zgłoszeniach z formularzy
-Netlify → **Forms → Form notifications → Add notification → Email** i podaj adres,
-na który mają przychodzić zgłoszenia z formularzy `kontakt` i `b2b`.
+### Domena i dane do podmiany
+- Domena `4funsoda.pl` – w `index.html`, `robots.txt`, generatorze stron miast
+  (`scripts/generate-city-pages.mjs`, stała `SITE`) oraz w `$allowed` (CORS) w plikach PHP.
+- E-mail i linki społecznościowe: `src/FunSoda.jsx`, obiekt `BRAND`.
+- Logo/grafiki: `public/logo-4funsoda*.png`, `public/zespol.png`, `public/cylinder-*.png`,
+  `public/og-image.png`, `public/favicon.svg`.
 
 ---
 
@@ -66,10 +61,14 @@ na który mają przychodzić zgłoszenia z formularzy `kontakt` i `b2b`.
 
 ```
 4funsoda/
-├─ index.html                     # HTML + meta SEO + ukryte formularze dla Netlify
-├─ netlify.toml                   # konfiguracja build/redirects/headers
+├─ index.html                     # HTML + meta SEO (+ structured data)
 ├─ public/
-│  ├─ favicon.svg                 # logo/marker (gradient aurora)
+│  ├─ .htaccess                   # HTTPS, przekierowania, fallback SPA, ochrona /api
+│  ├─ api/                        # endpointy PHP: contact.php, b2b.php (mail())
+│  ├─ logo-4funsoda*.png          # logo (kolor + biały wariant na ciemne tło)
+│  ├─ zespol.png, cylinder-*.png  # zdjęcia: zespół + butelki
+│  ├─ og-image.png                # obraz Open Graph 1200×630
+│  ├─ favicon.svg                 # favicon/marker (bąbelki, niebieski)
 │  ├─ robots.txt
 │  └─ m/, sitemap.xml             # (generowane przy buildzie)
 ├─ scripts/

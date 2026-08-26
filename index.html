@@ -179,26 +179,8 @@
   <body>
     <div id="root"></div>
 
-    <!-- ─── Netlify Forms – ukryte formularze do wykrycia przy buildzie ────────
-         Aplikacja React wysyła dane fetch-em na "/", a Netlify rozpoznaje
-         formularze po tych statycznych deklaracjach (name + pola). Nie usuwać. -->
-    <form name="kontakt" data-netlify="true" netlify-honeypot="bot-field" hidden>
-      <input type="text" name="fullName" />
-      <input type="email" name="email" />
-      <input type="tel" name="phone" />
-      <textarea name="message"></textarea>
-      <input name="bot-field" />
-    </form>
-    <form name="b2b" data-netlify="true" netlify-honeypot="bot-field" hidden>
-      <input type="text" name="companyName" />
-      <input type="text" name="nip" />
-      <input type="text" name="fullName" />
-      <input type="email" name="email" />
-      <input type="tel" name="phone" />
-      <input type="text" name="address" />
-      <input name="bot-field" />
-    </form>
-
+    <!-- Formularze (kontakt + B2B) wysyłają dane do endpointów PHP:
+         /api/contact.php i /api/b2b.php (wysyłka mailem przez mail()). -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

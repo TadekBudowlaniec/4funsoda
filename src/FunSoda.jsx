@@ -146,19 +146,18 @@ const MARKER_ICON = L.icon({
   className: "fs-marker-icon",
 });
 
-// ─── NETLIFY FORM HELPER ─────────────────────────────────────────────────────
-const encodeForm = (data) =>
-  Object.keys(data)
-    .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(data[k] ?? ""))
-    .join("&");
-
-async function submitNetlify(formName, data) {
-  const res = await fetch("/", {
+// ─── FORM HELPER (endpointy PHP mail() – jak na sodawave) ─────────────────────
+async function submitForm(endpoint, data) {
+  const res = await fetch(`/api/${endpoint}.php`, {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: encodeForm({ "form-name": formName, "bot-field": "", ...data }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
   });
-  if (!res.ok) throw new Error("Network response was not ok");
+  let json = {};
+  try { json = await res.json(); } catch { /* brak treści JSON */ }
+  if (!res.ok || !json.ok) {
+    throw new Error(json.error || "Nie udało się wysłać. Spróbuj ponownie.");
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -767,11 +766,11 @@ function B2BSection() {
   const onSubmit = async (data) => {
     setServerMsg(null);
     try {
-      await submitNetlify("b2b", data);
+      await submitForm("b2b", data);
       setServerMsg({ type: "success", text: "Dziękujemy za zgłoszenie! Skontaktujemy się z Tobą wkrótce." });
       reset();
-    } catch {
-      setServerMsg({ type: "error", text: "Nie udało się wysłać zgłoszenia. Spróbuj ponownie." });
+    } catch (err) {
+      setServerMsg({ type: "error", text: err.message || "Nie udało się wysłać zgłoszenia. Spróbuj ponownie." });
     }
   };
 
@@ -943,11 +942,11 @@ function ContactSection() {
   const onSubmit = async (data) => {
     setServerMsg(null);
     try {
-      await submitNetlify("kontakt", data);
+      await submitForm("contact", data);
       setServerMsg({ type: "success", text: "Wiadomość została wysłana. Dziękujemy!" });
       reset();
-    } catch {
-      setServerMsg({ type: "error", text: "Nie udało się wysłać wiadomości. Spróbuj ponownie." });
+    } catch (err) {
+      setServerMsg({ type: "error", text: err.message || "Nie udało się wysłać wiadomości. Spróbuj ponownie." });
     }
   };
 
