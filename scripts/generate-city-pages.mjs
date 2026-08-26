@@ -57,7 +57,7 @@ function favicons() {
   return `
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
-    <meta name="theme-color" content="#7C5CFF" />`;
+    <meta name="theme-color" content="#2563EB" />`;
 }
 
 function fonts() {
@@ -77,9 +77,9 @@ function sharedStyles() {
   return `
     <style>
       :root {
-        --violet: #7C5CFF; --blue: #3B82F6; --cyan: #22D3EE;
+        --violet: #2563EB; --blue: #3B82F6; --cyan: #22D3EE;
         --ink: #0B1020; --muted: #5B6178; --bg: #F7F8FF;
-        --border: rgba(124,92,255,0.16); --aurora: linear-gradient(120deg,#7C5CFF,#3B82F6,#22D3EE);
+        --border: rgba(37,99,235,0.16); --aurora: linear-gradient(120deg,#2563EB,#3B82F6,#22D3EE);
       }
       * { box-sizing: border-box; }
       html, body { margin: 0; padding: 0; }
@@ -91,31 +91,31 @@ function sharedStyles() {
       header.site { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
       header.site .row { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; max-width: 1100px; margin: 0 auto; gap: 16px; flex-wrap: wrap; }
       header.site .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 21px; color: var(--ink); font-family: 'Sora', sans-serif; }
-      header.site .logo img { width: 34px; height: 34px; }
+      header.site .logo img { height: 30px; width: auto; }
       header.site nav a { margin-left: 18px; font-weight: 600; color: var(--muted); }
       header.site nav a:hover { color: var(--violet); }
       .breadcrumbs { max-width: 1100px; margin: 0 auto; padding: 14px 20px; font-size: 14px; color: var(--muted); }
       .breadcrumbs a { color: var(--muted); }
       main { padding: 24px 20px 64px; }
-      .hero { background: linear-gradient(180deg, rgba(124,92,255,0.1) 0%, transparent 100%); border-bottom: 1px solid var(--border); padding: 44px 20px 56px; }
+      .hero { background: linear-gradient(180deg, rgba(37,99,235,0.1) 0%, transparent 100%); border-bottom: 1px solid var(--border); padding: 44px 20px 56px; }
       .hero .inner { max-width: 1100px; margin: 0 auto; }
       h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.12; margin: 0 0 16px; font-weight: 800; letter-spacing: -0.5px; }
       .lead { font-size: 18px; color: var(--muted); max-width: 720px; margin: 0; }
       h2 { font-size: 24px; font-weight: 700; margin: 40px 0 16px; }
       h3 { font-size: 17px; font-weight: 700; margin: 0 0 4px; }
       .stores { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); list-style: none; padding: 0; margin: 16px 0 0; }
-      .store { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 6px 18px rgba(124,92,255,0.06); }
+      .store { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 6px 18px rgba(37,99,235,0.06); }
       .store .addr { color: var(--muted); font-size: 14px; }
-      .store .hours { display: inline-block; padding: 4px 10px; background: rgba(124,92,255,0.1); color: var(--violet); border-radius: 999px; font-weight: 700; font-size: 13px; margin-top: 6px; width: fit-content; }
+      .store .hours { display: inline-block; padding: 4px 10px; background: rgba(37,99,235,0.1); color: var(--violet); border-radius: 999px; font-weight: 700; font-size: 13px; margin-top: 6px; width: fit-content; }
       .store .nav-link { margin-top: 10px; font-weight: 700; font-size: 14px; color: var(--violet); }
-      #cityMap { width: 100%; height: 420px; border: 1px solid var(--border); border-radius: 16px; margin-top: 14px; background: rgba(124,92,255,0.06); }
-      .cta { display: inline-block; margin-top: 36px; padding: 14px 24px; background: var(--aurora); color: #fff !important; font-weight: 700; border-radius: 999px; box-shadow: 0 14px 30px rgba(124,92,255,0.35); }
+      #cityMap { width: 100%; height: 420px; border: 1px solid var(--border); border-radius: 16px; margin-top: 14px; background: rgba(37,99,235,0.06); }
+      .cta { display: inline-block; margin-top: 36px; padding: 14px 24px; background: var(--aurora); color: #fff !important; font-weight: 700; border-radius: 999px; box-shadow: 0 14px 30px rgba(37,99,235,0.35); }
       .cta:hover { text-decoration: none; opacity: 0.95; }
       .info-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 16px; }
       .info-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 18px 20px; }
       .info-card h3 { color: var(--violet); margin-bottom: 6px; }
       details { border: 1px solid var(--border); border-radius: 14px; padding: 12px 16px; margin-top: 10px; background: #fff; }
-      details[open] { background: rgba(124,92,255,0.03); }
+      details[open] { background: rgba(37,99,235,0.03); }
       summary { cursor: pointer; font-weight: 700; }
       footer.site { border-top: 1px solid var(--border); padding: 24px 20px; margin-top: 56px; color: var(--muted); font-size: 14px; }
       footer.site .row { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
@@ -135,8 +135,7 @@ function siteHeader() {
     <header class="site">
       <div class="row">
         <a class="logo" href="/" aria-label="${BRAND} – strona główna">
-          <img src="/favicon.svg" alt="${BRAND}" width="34" height="34" />
-          ${BRAND}
+          <img src="/logo-4funsoda.png" alt="${BRAND}" />
         </a>
         <nav aria-label="Główna nawigacja">
           <a href="/">Strona główna</a>
@@ -250,7 +249,7 @@ function renderCityPage(group) {
 <meta property="og:url" content="${canonical}" />
 <meta property="og:title" content="${escapeHtml(title)}" />
 <meta property="og:description" content="${escapeHtml(description)}" />
-<meta property="og:image" content="${SITE}/favicon.svg" />
+<meta property="og:image" content="${SITE}/og-image.png" />
 <meta property="og:locale" content="pl_PL" />
 ${favicons()}
 ${fonts()}
@@ -321,7 +320,7 @@ ${siteFooter()}
     var bounds = [];
     points.forEach(function (p) {
       var m = L.marker([p.lat, p.lng], { icon: icon }).addTo(map);
-      m.bindPopup('<div style="min-width:200px"><div style="font-size:12px;font-weight:800;color:#0B1020;margin-bottom:2px">' + p.name + '</div><div style="font-size:11px;color:#5B6178;margin-bottom:4px">' + p.address + '</div><div style="font-size:11px;color:#7C5CFF;font-weight:700">Godziny: ' + p.hours + '</div></div>');
+      m.bindPopup('<div style="min-width:200px"><div style="font-size:12px;font-weight:800;color:#0B1020;margin-bottom:2px">' + p.name + '</div><div style="font-size:11px;color:#5B6178;margin-bottom:4px">' + p.address + '</div><div style="font-size:11px;color:#2563EB;font-weight:700">Godziny: ' + p.hours + '</div></div>');
       bounds.push([p.lat, p.lng]);
     });
     if (points.length > 1) { map.fitBounds(bounds, { padding: [40, 40], maxZoom: 14 }); }
@@ -389,7 +388,7 @@ function renderHubPage() {
 <meta property="og:url" content="${canonical}" />
 <meta property="og:title" content="${escapeHtml(title)}" />
 <meta property="og:description" content="${escapeHtml(description)}" />
-<meta property="og:image" content="${SITE}/favicon.svg" />
+<meta property="og:image" content="${SITE}/og-image.png" />
 <meta property="og:locale" content="pl_PL" />
 ${favicons()}
 ${fonts()}

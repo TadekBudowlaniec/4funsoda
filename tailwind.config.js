@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         aurora: {
-          violet: "#7C5CFF",
+          violet: "#2563EB",
           blue:   "#3B82F6",
           cyan:   "#22D3EE",
           ink:    "#0B1020",
@@ -21,9 +21,9 @@ export default {
         sans: ["Inter", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
       },
       boxShadow: {
-        "aurora-sm": "0 4px 18px rgba(124,92,255,0.18)",
+        "aurora-sm": "0 4px 18px rgba(37,99,235,0.18)",
         "aurora-md": "0 10px 34px rgba(59,130,246,0.22)",
-        "aurora-lg": "0 24px 60px rgba(124,92,255,0.28)",
+        "aurora-lg": "0 24px 60px rgba(37,99,235,0.28)",
       },
       borderRadius: {
         "4xl": "2rem",

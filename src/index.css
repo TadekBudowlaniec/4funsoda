@@ -6,16 +6,16 @@
 
 /* ─── AURORA GLASS – DESIGN TOKENS ───────────────────────────────────────── */
 :root {
-  --violet:   #7C5CFF;
+  --violet:   #2563EB;
   --blue:     #3B82F6;
   --cyan:     #22D3EE;
   --ink:      #0B1020;
   --muted:    #5B6178;
-  --bg:       #F7F8FF;
+  --bg:       #F5F9FF;
   --glass:    rgba(255, 255, 255, 0.62);
   --glass-strong: rgba(255, 255, 255, 0.82);
-  --glass-border: rgba(124, 92, 255, 0.16);
-  --aurora: linear-gradient(120deg, #7C5CFF 0%, #3B82F6 52%, #22D3EE 100%);
+  --glass-border: rgba(37, 99, 235, 0.16);
+  --aurora: linear-gradient(120deg, #2563EB 0%, #3B82F6 52%, #22D3EE 100%);
   --font-display: 'Sora', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
@@ -121,7 +121,7 @@ img, svg { display: block; max-width: 100%; }
   position: absolute;
   bottom: -6%;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.95), rgba(124,92,255,0.35));
+  background: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.95), rgba(37,99,235,0.35));
   border: 1px solid rgba(255,255,255,0.6);
   pointer-events: none;
   animation: bubble-rise linear infinite;
@@ -130,9 +130,9 @@ img, svg { display: block; max-width: 100%; }
 /* ─── SCROLLBAR / SELECTION / FOCUS ──────────────────────────────────────── */
 ::-webkit-scrollbar        { width: 8px; }
 ::-webkit-scrollbar-track  { background: #eef0fb; }
-::-webkit-scrollbar-thumb  { background: linear-gradient(#7C5CFF, #22D3EE); border-radius: 8px; }
+::-webkit-scrollbar-thumb  { background: linear-gradient(#2563EB, #22D3EE); border-radius: 8px; }
 
-::selection { background: rgba(124,92,255,0.22); color: var(--ink); }
+::selection { background: rgba(37,99,235,0.22); color: var(--ink); }
 
 :focus-visible {
   outline: 2px solid var(--violet);
@@ -160,7 +160,7 @@ input::placeholder, textarea::placeholder { color: #9aa0b8; }
 }
 .leaflet-top, .leaflet-bottom { z-index: 400; }
 .leaflet-top.leaflet-left { top: 84px; }
-.fs-marker-icon { filter: drop-shadow(0 4px 8px rgba(124,92,255,0.45)); }
+.fs-marker-icon { filter: drop-shadow(0 4px 8px rgba(37,99,235,0.45)); }
 
 /* ─── SEO SECTION (SEO-safe reveal) ──────────────────────────────────────── */
 .seo-content-wrapper {
@@ -178,7 +178,7 @@ input::placeholder, textarea::placeholder { color: #9aa0b8; }
 .offer-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .offer-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 26px 60px rgba(124, 92, 255, 0.28) !important;
+  box-shadow: 0 26px 60px rgba(37, 99, 235, 0.28) !important;
 }
 
 /* DESKTOP */

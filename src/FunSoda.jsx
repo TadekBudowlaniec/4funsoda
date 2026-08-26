@@ -18,7 +18,7 @@ const BRAND = {
   tagline: "Bąbelki pełne frajdy",
   phoneDisplay: "+48 578 424 517",
   phoneHref: "tel:+48578424517",
-  email: "kontakt@4funsoda.pl",
+  email: "4funsoda@4funsoda.pl",
   company: "Druk-Styl",
   nip: "5621805300",
   street: "ul. Słoneczna 2 lok. 2",
@@ -29,7 +29,7 @@ const BRAND = {
 
 // ─── AURORA PALETTE ─────────────────────────────────────────────────────────
 const C = {
-  violet: "#7C5CFF",
+  violet: "#2563EB",
   blue: "#3B82F6",
   cyan: "#22D3EE",
   ink: "#0B1020",
@@ -38,8 +38,8 @@ const C = {
   pink: "#EC4899",
   glass: "rgba(255,255,255,0.62)",
   glassStrong: "rgba(255,255,255,0.85)",
-  border: "rgba(124,92,255,0.16)",
-  aurora: "linear-gradient(120deg, #7C5CFF 0%, #3B82F6 52%, #22D3EE 100%)",
+  border: "rgba(37,99,235,0.16)",
+  aurora: "linear-gradient(120deg, #2563EB 0%, #3B82F6 52%, #22D3EE 100%)",
 };
 
 const NAV_LINKS = [
@@ -165,91 +165,21 @@ async function submitNetlify(formName, data) {
 //  SVG GRAPHICS
 // ═══════════════════════════════════════════════════════════════════════════
 
-function LogoMark({ size = 40 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true">
-      <defs>
-        <linearGradient id="lm-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#7C5CFF" />
-          <stop offset="0.5" stopColor="#3B82F6" />
-          <stop offset="1" stopColor="#22D3EE" />
-        </linearGradient>
-      </defs>
-      <rect width="64" height="64" rx="16" fill="url(#lm-grad)" />
-      <circle cx="38" cy="30" r="9" fill="#fff" opacity="0.96" />
-      <circle cx="23" cy="41" r="6.5" fill="#fff" opacity="0.9" />
-      <circle cx="44" cy="45" r="4.5" fill="#fff" opacity="0.85" />
-      <circle cx="28" cy="23" r="3.2" fill="#fff" opacity="0.8" />
-    </svg>
-  );
-}
-
-function FunSodaLogo({ light = false }) {
+function FunSodaLogo({ light = false, height = 34 }) {
   return (
     <a
       href="#hero"
       onClick={(e) => { e.preventDefault(); scroll("#hero"); }}
-      className="flex items-center gap-2.5 select-none"
+      className="flex items-center select-none"
       style={{ textDecoration: "none" }}
       aria-label="4FUNSODA – strona główna"
     >
-      <LogoMark size={38} />
-      <span
-        className="font-display"
-        style={{
-          fontWeight: 800,
-          fontSize: "1.35rem",
-          letterSpacing: "-0.02em",
-          color: light ? "#fff" : C.ink,
-        }}
-      >
-        <span className="aurora-text" style={light ? { color: "#fff", WebkitTextFillColor: "#fff", background: "none" } : {}}>4FUN</span>
-        <span style={{ color: light ? "rgba(255,255,255,0.85)" : C.muted }}>SODA</span>
-      </span>
+      <img
+        src={light ? "/logo-4funsoda-white.png" : "/logo-4funsoda.png"}
+        alt="4FUNSODA"
+        style={{ height, width: "auto", display: "block" }}
+      />
     </a>
-  );
-}
-
-// Parametric CO₂ cylinder illustration
-function CylinderSVG({ tint = "blue", style }) {
-  const palettes = {
-    pink: { a: "#FF7AB6", b: "#EC4899", c: "#BE185D", cap: "#F9A8D4", seal: "#DB2777" },
-    blue: { a: "#60A5FA", b: "#3B82F6", c: "#1D4ED8", cap: "#93C5FD", seal: "#2563EB" },
-  };
-  const p = palettes[tint] || palettes.blue;
-  const id = tint;
-  return (
-    <svg viewBox="0 0 160 300" style={style} aria-hidden="true">
-      <defs>
-        <linearGradient id={`cyl-${id}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor={p.a} />
-          <stop offset="0.45" stopColor={p.b} />
-          <stop offset="1" stopColor={p.c} />
-        </linearGradient>
-        <linearGradient id={`gloss-${id}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#fff" stopOpacity="0.55" />
-          <stop offset="0.4" stopColor="#fff" stopOpacity="0.05" />
-          <stop offset="1" stopColor="#fff" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      {/* valve */}
-      <rect x="66" y="6" width="28" height="20" rx="5" fill={p.cap} />
-      <rect x="72" y="0" width="16" height="12" rx="3" fill={p.c} />
-      {/* shoulder */}
-      <path d="M50 40 Q80 18 110 40 L110 60 L50 60 Z" fill={`url(#cyl-${id})`} />
-      {/* body */}
-      <rect x="40" y="56" width="80" height="230" rx="34" fill={`url(#cyl-${id})`} />
-      {/* seal band */}
-      <rect x="40" y="80" width="80" height="26" fill={p.seal} opacity="0.92" />
-      {/* label plate */}
-      <rect x="52" y="126" width="56" height="96" rx="12" fill="#fff" opacity="0.92" />
-      <circle cx="80" cy="158" r="15" fill={`url(#cyl-${id})`} />
-      <text x="80" y="163" textAnchor="middle" fontFamily="Sora, sans-serif" fontSize="16" fontWeight="800" fill="#fff">CO₂</text>
-      <rect x="62" y="188" width="36" height="6" rx="3" fill={p.b} opacity="0.7" />
-      <rect x="66" y="200" width="28" height="5" rx="2.5" fill={p.b} opacity="0.45" />
-      {/* gloss */}
-      <rect x="48" y="60" width="26" height="220" rx="13" fill={`url(#gloss-${id})`} />
-    </svg>
   );
 }
 
@@ -260,10 +190,10 @@ function HeroArt() {
     [80, 110, 8], [64, 235, 4], [96, 118, 5], [50, 165, 5],
   ];
   return (
-    <svg viewBox="0 0 340 380" width="100%" style={{ maxWidth: 400, filter: "drop-shadow(0 24px 44px rgba(124,92,255,0.24))" }} aria-hidden="true">
+    <svg viewBox="0 0 340 380" width="100%" style={{ maxWidth: 400, filter: "drop-shadow(0 24px 44px rgba(37,99,235,0.24))" }} aria-hidden="true">
       <defs>
         <linearGradient id="soda-liquid" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#A78BFA" />
+          <stop offset="0" stopColor="#60A5FA" />
           <stop offset="0.5" stopColor="#38BDF8" />
           <stop offset="1" stopColor="#22D3EE" />
         </linearGradient>
@@ -273,34 +203,24 @@ function HeroArt() {
           <stop offset="1" stopColor="#fff" stopOpacity="0.45" />
         </linearGradient>
         <radialGradient id="halo" cx="0.5" cy="0.45" r="0.6">
-          <stop offset="0" stopColor="#7C5CFF" stopOpacity="0.35" />
-          <stop offset="1" stopColor="#7C5CFF" stopOpacity="0" />
+          <stop offset="0" stopColor="#2563EB" stopOpacity="0.35" />
+          <stop offset="1" stopColor="#2563EB" stopOpacity="0" />
         </radialGradient>
       </defs>
 
       <circle cx="170" cy="180" r="170" fill="url(#halo)" />
 
-      {/* floating cylinder */}
-      <g transform="translate(232 96) rotate(12)">
-        <rect x="0" y="0" width="52" height="150" rx="24" fill="#3B82F6" />
-        <rect x="0" y="16" width="52" height="16" fill="#2563EB" opacity="0.9" />
-        <rect x="14" y="-8" width="24" height="14" rx="4" fill="#93C5FD" />
-        <circle cx="26" cy="70" r="12" fill="#fff" />
-        <text x="26" y="75" textAnchor="middle" fontFamily="Sora, sans-serif" fontSize="12" fontWeight="800" fill="#3B82F6">CO₂</text>
-        <rect x="6" y="4" width="10" height="140" rx="5" fill="#fff" opacity="0.3" />
-      </g>
-
       {/* glass cup */}
-      <path d="M96 96 L244 96 L228 320 Q226 340 206 340 L134 340 Q114 340 112 320 Z" fill="url(#glass-body)" stroke="rgba(124,92,255,0.35)" strokeWidth="3" />
+      <path d="M96 96 L244 96 L228 320 Q226 340 206 340 L134 340 Q114 340 112 320 Z" fill="url(#glass-body)" stroke="rgba(37,99,235,0.35)" strokeWidth="3" />
       {/* liquid */}
       <path d="M104 150 L236 150 L226 316 Q225 330 210 330 L130 330 Q115 330 114 316 Z" fill="url(#soda-liquid)" opacity="0.92" />
       {/* surface ellipse */}
       <ellipse cx="170" cy="150" rx="66" ry="12" fill="#E0F2FE" opacity="0.9" />
       {/* rim */}
-      <ellipse cx="170" cy="96" rx="74" ry="14" fill="none" stroke="rgba(124,92,255,0.45)" strokeWidth="3" />
+      <ellipse cx="170" cy="96" rx="74" ry="14" fill="none" stroke="rgba(37,99,235,0.45)" strokeWidth="3" />
 
       {/* straw */}
-      <rect x="188" y="60" width="12" height="150" rx="6" transform="rotate(10 194 135)" fill="#7C5CFF" />
+      <rect x="188" y="60" width="12" height="150" rx="6" transform="rotate(10 194 135)" fill="#2563EB" />
       <rect x="188" y="60" width="12" height="150" rx="6" transform="rotate(10 194 135)" fill="#fff" opacity="0.18" />
 
       {/* lemon slice */}
@@ -321,40 +241,6 @@ function HeroArt() {
   );
 }
 
-function AboutArt() {
-  return (
-    <svg viewBox="0 0 360 360" width="100%" style={{ maxWidth: 380 }} aria-hidden="true">
-      <defs>
-        <linearGradient id="ring-a" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#7C5CFF" />
-          <stop offset="0.5" stopColor="#3B82F6" />
-          <stop offset="1" stopColor="#22D3EE" />
-        </linearGradient>
-        <radialGradient id="ring-halo" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stopColor="#22D3EE" stopOpacity="0.28" />
-          <stop offset="1" stopColor="#22D3EE" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="180" cy="180" r="180" fill="url(#ring-halo)" />
-      <circle cx="180" cy="180" r="120" fill="none" stroke="url(#ring-a)" strokeWidth="26" strokeLinecap="round" strokeDasharray="470 300" transform="rotate(-90 180 180)" />
-      <circle cx="180" cy="180" r="86" fill="rgba(255,255,255,0.7)" stroke="rgba(124,92,255,0.2)" strokeWidth="2" />
-      {/* wave inside */}
-      <clipPath id="wc"><circle cx="180" cy="180" r="86" /></clipPath>
-      <g clipPath="url(#wc)">
-        <path d="M94 190 Q124 168 154 190 T214 190 T274 190 V266 H94 Z" fill="#38BDF8" opacity="0.85" />
-        <path d="M94 202 Q124 182 154 202 T214 202 T274 202 V266 H94 Z" fill="#7C5CFF" opacity="0.55" />
-        {[[130,150,6],[170,138,8],[210,152,5],[150,120,4],[196,120,5]].map(([cx,cy,r],i)=>(
-          <circle key={i} cx={cx} cy={cy} r={r} fill="#fff" opacity="0.8" />
-        ))}
-      </g>
-      <g transform="translate(180 66)">
-        <circle r="20" fill="#fff" stroke="url(#ring-a)" strokeWidth="4" />
-        <text y="6" textAnchor="middle" fontFamily="Sora, sans-serif" fontSize="16" fontWeight="800" fill="#7C5CFF">CO₂</text>
-      </g>
-    </svg>
-  );
-}
-
 // ═══════════════════════════════════════════════════════════════════════════
 //  BACKGROUND (aurora blobs + rising bubbles)
 // ═══════════════════════════════════════════════════════════════════════════
@@ -370,7 +256,7 @@ function AuroraBackground() {
   ];
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 0, overflow: "hidden", pointerEvents: "none" }} aria-hidden="true">
-      <div className="aurora-blob" style={{ width: 460, height: 460, left: "-6%", top: "-8%", background: "#7C5CFF" }} />
+      <div className="aurora-blob" style={{ width: 460, height: 460, left: "-6%", top: "-8%", background: "#2563EB" }} />
       <div className="aurora-blob" style={{ width: 520, height: 520, right: "-10%", top: "18%", background: "#22D3EE", animationDelay: "-6s" }} />
       <div className="aurora-blob" style={{ width: 420, height: 420, left: "26%", bottom: "-12%", background: "#3B82F6", animationDelay: "-11s", opacity: 0.4 }} />
       {bubbles.map((b, i) => (
@@ -412,7 +298,7 @@ function Navbar() {
           style={{
             borderRadius: 999,
             padding: "10px 14px 10px 18px",
-            boxShadow: scrolled ? "0 10px 30px rgba(124,92,255,0.16)" : "0 6px 22px rgba(124,92,255,0.10)",
+            boxShadow: scrolled ? "0 10px 30px rgba(37,99,235,0.16)" : "0 6px 22px rgba(37,99,235,0.10)",
             transition: "box-shadow 0.3s ease",
           }}
         >
@@ -435,7 +321,7 @@ function Navbar() {
               href="#contact"
               onClick={(e) => go(e, "#contact")}
               className="text-white font-bold flex items-center gap-2"
-              style={{ background: C.aurora, fontSize: "0.9rem", padding: "10px 20px", borderRadius: 999, boxShadow: "0 8px 22px rgba(124,92,255,0.4)" }}
+              style={{ background: C.aurora, fontSize: "0.9rem", padding: "10px 20px", borderRadius: 999, boxShadow: "0 8px 22px rgba(37,99,235,0.4)" }}
             >
               <Sparkles size={15} /> Kontakt
             </a>
@@ -524,7 +410,7 @@ function Hero() {
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
             <a href="#map" onClick={(e) => { e.preventDefault(); scroll("#map"); }}
               className="text-white font-bold flex items-center gap-2"
-              style={{ background: C.aurora, padding: "12px 24px", borderRadius: 999, fontSize: 14.5, boxShadow: "0 12px 26px rgba(124,92,255,0.35)" }}>
+              style={{ background: C.aurora, padding: "12px 24px", borderRadius: 999, fontSize: 14.5, boxShadow: "0 12px 26px rgba(37,99,235,0.35)" }}>
               <MapPin size={17} /> Znajdź punkt
             </a>
             <a href="#offer" onClick={(e) => { e.preventDefault(); scroll("#offer"); }}
@@ -591,7 +477,7 @@ function MapSection() {
     <Section id="map" title="Znajdź punkt wymiany" subtitle="Sieć punktów w Polsce">
       <div className="fs-map-shell">
         <MapWithSearch />
-        <div className="glass" style={{ borderRadius: 24, padding: "26px 24px", display: "flex", flexDirection: "column", gap: 16, boxShadow: "0 14px 40px rgba(124,92,255,0.12)" }}>
+        <div className="glass" style={{ borderRadius: 24, padding: "26px 24px", display: "flex", flexDirection: "column", gap: 16, boxShadow: "0 14px 40px rgba(37,99,235,0.12)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <div style={{ width: 40, height: 40, borderRadius: 12, background: C.aurora, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
               <MapPin size={20} />
@@ -601,7 +487,7 @@ function MapSection() {
           <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.65 }}>
             Punkty wymiany cylindrów CO₂ znajdziesz w wybranych lokalizacjach popularnych sieci handlowych i lokalnych sklepów. Wybierz miasto, aby sprawdzić najbliższy punkt.
           </p>
-          <div style={{ marginTop: 4, paddingTop: 14, borderTop: "1px dashed rgba(124,92,255,0.25)", fontSize: 13, color: C.muted, display: "flex", flexDirection: "column", gap: 8 }}>
+          <div style={{ marginTop: 4, paddingTop: 14, borderTop: "1px dashed rgba(37,99,235,0.25)", fontSize: 13, color: C.muted, display: "flex", flexDirection: "column", gap: 8 }}>
             <span style={{ display: "flex", gap: 8 }}><Zap size={16} color={C.cyan} /> Kliknij marker na mapie, aby zobaczyć szczegóły punktu.</span>
             <span style={{ display: "flex", gap: 8 }}><Droplets size={16} color={C.violet} /> Dwa rodzaje cylindrów CO₂ pasujące do każdego saturatora – wkręcane i Quick Connect.</span>
           </div>
@@ -654,7 +540,7 @@ function MapWithSearch() {
         `<div style="min-width:200px">
            <div style="font-size:12px;font-weight:800;color:#0B1020;margin-bottom:2px">${p.name}</div>
            <div style="font-size:11px;color:#5B6178;margin-bottom:6px">${p.address}</div>
-           <div style="display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:999px;background:#EEF0FB;border:1px solid #7C5CFF;font-size:10px;font-weight:700;color:#5B21B6;margin-bottom:4px">Dostępne: Cylindry CO₂</div>
+           <div style="display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:999px;background:#EEF0FB;border:1px solid #2563EB;font-size:10px;font-weight:700;color:#1D4ED8;margin-bottom:4px">Dostępne: Cylindry CO₂</div>
            <div style="margin-top:4px;font-size:10px;color:#5B6178">Godziny: ${p.hours || "8–18"}</div>
          </div>`
       );
@@ -681,7 +567,7 @@ function MapWithSearch() {
             placeholder="Wyszukaj po mieście"
             value={searchCity}
             onChange={(e) => setSearchCity(e.target.value)}
-            style={{ width: "100%", borderRadius: 999, border: "1px solid rgba(124,92,255,0.3)", background: "rgba(255,255,255,0.85)", padding: "9px 34px 9px 14px", fontSize: 13, outline: "none" }}
+            style={{ width: "100%", borderRadius: 999, border: "1px solid rgba(37,99,235,0.3)", background: "rgba(255,255,255,0.85)", padding: "9px 34px 9px 14px", fontSize: 13, outline: "none" }}
           />
           <span style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", fontSize: 11, color: C.muted }}>
             {visiblePoints.length}/{MAP_POINTS.length}
@@ -718,19 +604,23 @@ function AboutSection() {
             {BRAND.name} to także świadomy wybór dla środowiska. Wymiana cylindrów i korzystanie z saturatorów pozwala ograniczyć ilość jednorazowych butelek PET i wspiera ideę gospodarki obiegu zamkniętego – bez rezygnowania z komfortu i z realną oszczędnością.
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 24 }}>
-            <LogoMark size={38} />
+            <img src="/logo-4funsoda.png" alt="4FUNSODA" style={{ height: 24, width: "auto" }} />
             <span style={{ fontWeight: 600, color: C.ink, fontSize: 15 }}>{BRAND.tagline} – razem z nami.</span>
           </div>
         </div>
-        <div className="about-image animate-float" style={{ display: "flex", justifyContent: "center" }}>
-          <AboutArt />
+        <div className="about-image" style={{ display: "flex", justifyContent: "center", alignItems: "flex-end" }}>
+          <img
+            src="/zespol.png"
+            alt="Zespół 4FUNSODA"
+            style={{ width: "100%", maxWidth: 440, height: "auto", filter: "drop-shadow(0 24px 44px rgba(37,99,235,0.22))" }}
+          />
         </div>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: 20 }}>
         {pillars.map((p) => (
           <div key={p.title} className="glass" style={{ borderRadius: 22, padding: "30px 24px", textAlign: "center", transition: "transform 0.25s, box-shadow 0.25s" }}
-            onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-6px)"; e.currentTarget.style.boxShadow = "0 20px 44px rgba(124,92,255,0.2)"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-6px)"; e.currentTarget.style.boxShadow = "0 20px 44px rgba(37,99,235,0.2)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
             <div style={{ width: 58, height: 58, background: C.aurora, borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", color: "#fff" }}>{p.icon}</div>
             <h3 className="font-display" style={{ fontWeight: 700, color: C.ink, marginBottom: 8 }}>{p.title}</h3>
@@ -747,7 +637,7 @@ function OfferSection() {
   const [openFaq, setOpenFaq] = useState(0);
 
   const OfferCard = ({ accent, title, desc, tags, art, textColor, panelBg }) => (
-    <div className="offer-card glass" style={{ borderRadius: 20, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 10px 30px rgba(124,92,255,0.1)" }}>
+    <div className="offer-card glass" style={{ borderRadius: 20, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 10px 30px rgba(37,99,235,0.1)" }}>
       <div style={{ padding: "22px 20px 18px", flex: 1, display: "flex", flexDirection: "column" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
           <div style={{ width: 42, height: 42, borderRadius: 12, background: accent, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", flexShrink: 0 }}>
@@ -758,11 +648,11 @@ function OfferSection() {
         <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.6 }}>{desc}</p>
         <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 6, fontSize: 10.5 }}>
           {tags.map((t) => (
-            <span key={t} style={{ padding: "4px 9px", borderRadius: 999, background: "rgba(124,92,255,0.09)", color: C.violet, fontWeight: 700 }}>{t}</span>
+            <span key={t} style={{ padding: "4px 9px", borderRadius: 999, background: "rgba(37,99,235,0.09)", color: C.violet, fontWeight: 700 }}>{t}</span>
           ))}
         </div>
       </div>
-      <div style={{ height: 148, background: panelBg, borderTop: "1px solid rgba(124,92,255,0.1)", display: "flex", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
+      <div style={{ height: 148, background: panelBg, borderTop: "1px solid rgba(37,99,235,0.1)", display: "flex", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
         {art}
       </div>
     </div>
@@ -776,18 +666,18 @@ function OfferSection() {
           title="Cylinder Quick Connect"
           desc="Szybki montaż, pasuje do saturatorów z systemem Quick Connect (różowa plomba)."
           tags={["60 L napoju", "Ekologia", "Quick Connect"]}
-          art={<CylinderSVG tint="pink" style={{ height: 122 }} />}
+          art={<img src="/cylinder-quick.png" alt="Cylinder CO₂ Quick Connect 4FUNSODA" style={{ height: 138, width: "auto", filter: "drop-shadow(0 12px 20px rgba(236,72,153,0.28))" }} />}
         />
         <OfferCard
           accent="#3B82F6" textColor="#1D4ED8" panelBg="linear-gradient(160deg, #EFF6FF, #DBEAFE)"
           title="Cylinder Wkręcany"
           desc="Klasyczny system wkręcany, pasuje do większości saturatorów (niebieska plomba)."
           tags={["60 L napoju", "Oszczędność", "Wkręcany"]}
-          art={<CylinderSVG tint="blue" style={{ height: 122 }} />}
+          art={<img src="/cylinder-wkrecany.png" alt="Cylinder CO₂ wkręcany 4FUNSODA" style={{ height: 138, width: "auto", filter: "drop-shadow(0 12px 20px rgba(37,99,235,0.28))" }} />}
         />
 
         {/* Eco box */}
-        <div style={{ background: C.aurora, borderRadius: 20, padding: "26px 22px", color: "#fff", boxShadow: "0 14px 36px rgba(124,92,255,0.3)", display: "flex", flexDirection: "column" }}>
+        <div style={{ background: C.aurora, borderRadius: 20, padding: "26px 22px", color: "#fff", boxShadow: "0 14px 36px rgba(37,99,235,0.3)", display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <Leaf size={24} />
             <h3 className="font-display" style={{ fontSize: "1.2rem", fontWeight: 700 }}>Ekologicznie i oszczędnie</h3>
@@ -854,7 +744,7 @@ function OfferSection() {
 const fieldStyle = (hasError) => ({
   width: "100%",
   borderRadius: 12,
-  border: `1.5px solid ${hasError ? "#ef4444" : "rgba(124,92,255,0.22)"}`,
+  border: `1.5px solid ${hasError ? "#ef4444" : "rgba(37,99,235,0.22)"}`,
   background: "rgba(255,255,255,0.8)",
   padding: "11px 14px",
   fontSize: 14,
@@ -866,8 +756,8 @@ const labelStyle = {
   display: "block", fontSize: 10, fontWeight: 700, textTransform: "uppercase",
   letterSpacing: "0.1em", color: C.muted, marginBottom: 6,
 };
-const focusOn = (e) => { e.target.style.borderColor = C.violet; e.target.style.boxShadow = "0 0 0 3px rgba(124,92,255,0.14)"; };
-const focusOff = (hasError) => (e) => { e.target.style.boxShadow = "none"; e.target.style.borderColor = hasError ? "#ef4444" : "rgba(124,92,255,0.22)"; };
+const focusOn = (e) => { e.target.style.borderColor = C.violet; e.target.style.boxShadow = "0 0 0 3px rgba(37,99,235,0.14)"; };
+const focusOff = (hasError) => (e) => { e.target.style.boxShadow = "none"; e.target.style.borderColor = hasError ? "#ef4444" : "rgba(37,99,235,0.22)"; };
 
 // ─── B2B ─────────────────────────────────────────────────────────────────────
 function B2BSection() {
@@ -909,7 +799,7 @@ function B2BSection() {
   return (
     <Section id="b2b" title="Współpraca B2B" subtitle="Dla sklepów">
       <div className="b2b-grid">
-        <div className="b2b-benefits" style={{ background: C.aurora, borderRadius: 24, padding: "28px 24px", color: "#fff", boxShadow: "0 22px 50px rgba(124,92,255,0.4)" }}>
+        <div className="b2b-benefits" style={{ background: C.aurora, borderRadius: 24, padding: "28px 24px", color: "#fff", boxShadow: "0 22px 50px rgba(37,99,235,0.4)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <Building2 size={26} />
             <div>
@@ -925,9 +815,15 @@ function B2BSection() {
               </li>
             ))}
           </ul>
-          <div style={{ marginTop: 18, paddingTop: 14, borderTop: "1px dashed rgba(255,255,255,0.28)", fontSize: 12.5 }}>
-            Zadzwoń bezpośrednio:{" "}
-            <a href={BRAND.phoneHref} style={{ fontWeight: 800, color: "#fff", textDecoration: "underline", textDecorationStyle: "dotted" }}>{BRAND.phoneDisplay}</a>.
+          <div style={{ marginTop: 18, paddingTop: 14, borderTop: "1px dashed rgba(255,255,255,0.28)", fontSize: 12.5, display: "flex", flexDirection: "column", gap: 8 }}>
+            <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <Phone size={15} /> Zadzwoń:{" "}
+              <a href={BRAND.phoneHref} style={{ fontWeight: 800, color: "#fff", textDecoration: "underline", textDecorationStyle: "dotted" }}>{BRAND.phoneDisplay}</a>
+            </span>
+            <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <Mail size={15} /> Napisz:{" "}
+              <a href={`mailto:${BRAND.email}`} style={{ fontWeight: 800, color: "#fff", textDecoration: "underline", textDecorationStyle: "dotted" }}>{BRAND.email}</a>
+            </span>
           </div>
         </div>
 
@@ -947,7 +843,7 @@ function B2BSection() {
           ))}
           <button type="submit" disabled={isSubmitting}
             className="text-white font-bold"
-            style={{ marginTop: 4, width: "100%", border: "none", borderRadius: 999, padding: "13px 16px", fontSize: 14.5, cursor: "pointer", background: C.aurora, boxShadow: "0 12px 28px rgba(124,92,255,0.4)", opacity: isSubmitting ? 0.8 : 1 }}>
+            style={{ marginTop: 4, width: "100%", border: "none", borderRadius: 999, padding: "13px 16px", fontSize: 14.5, cursor: "pointer", background: C.aurora, boxShadow: "0 12px 28px rgba(37,99,235,0.4)", opacity: isSubmitting ? 0.8 : 1 }}>
             {isSubmitting ? "Wysyłanie..." : "Wyślij zgłoszenie"}
           </button>
           {serverMsg && <p style={{ marginTop: 6, fontSize: 12.5, fontWeight: 700, color: serverMsg.type === "success" ? "#16a34a" : "#b91c1c" }}>{serverMsg.text}</p>}
@@ -1066,7 +962,7 @@ function ContactSection() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 20, marginBottom: 40 }}>
         {contacts.map((c) => (
           <a key={c.title} href={c.href} className="glass" style={{ borderRadius: 20, padding: "30px 20px", display: "flex", flexDirection: "column", alignItems: "center", gap: 12, textAlign: "center", transition: "transform 0.2s, box-shadow 0.2s" }}
-            onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 18px 40px rgba(124,92,255,0.18)"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 18px 40px rgba(37,99,235,0.18)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
             <div style={{ width: 54, height: 54, background: C.aurora, color: "#fff", borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center" }}>{c.icon}</div>
             <span style={{ fontSize: 10, fontWeight: 700, color: C.muted, textTransform: "uppercase", letterSpacing: "0.1em" }}>{c.title}</span>
@@ -1094,7 +990,7 @@ function ContactSection() {
               {errors.message && <p style={{ marginTop: 4, fontSize: 11, color: "#b91c1c" }}>{errors.message.message}</p>}
             </div>
             <button type="submit" disabled={isSubmitting} className="text-white font-bold"
-              style={{ width: "100%", background: C.aurora, padding: 14, borderRadius: 12, border: "none", fontSize: 15, cursor: "pointer", boxShadow: "0 12px 28px rgba(124,92,255,0.4)", opacity: isSubmitting ? 0.85 : 1 }}>
+              style={{ width: "100%", background: C.aurora, padding: 14, borderRadius: 12, border: "none", fontSize: 15, cursor: "pointer", boxShadow: "0 12px 28px rgba(37,99,235,0.4)", opacity: isSubmitting ? 0.85 : 1 }}>
               {isSubmitting ? "Wysyłanie..." : "Wyślij wiadomość"}
             </button>
             {serverMsg && <p style={{ marginTop: 6, fontSize: 12.5, fontWeight: 700, color: serverMsg.type === "success" ? "#16a34a" : "#b91c1c" }}>{serverMsg.text}</p>}
@@ -1117,7 +1013,7 @@ function ContactSection() {
 // ─── FOOTER ──────────────────────────────────────────────────────────────────
 function Footer() {
   return (
-    <footer id="footer" style={{ position: "relative", zIndex: 1, background: "linear-gradient(135deg, #1E1B4B, #0B1020)", padding: "60px 0 32px", color: "#fff", marginTop: 20 }}>
+    <footer id="footer" style={{ position: "relative", zIndex: 1, background: "linear-gradient(135deg, #0B2A63, #0B1020)", padding: "60px 0 32px", color: "#fff", marginTop: 20 }}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: 40, marginBottom: 40 }}>
           <div>
